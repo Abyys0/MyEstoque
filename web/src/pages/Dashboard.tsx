@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import {
   ArchiveBoxIcon,
   ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
   ExclamationTriangleIcon,
   ClockIcon,
 } from '@heroicons/react/24/outline';
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import apiService from '../services/api';
 
 const COLORS = ['#4F46E5', '#10B981', '#F59E0B', '#EF4444'];
 
 export default function Dashboard() {
-  const navigate = useNavigate();
   const [summary, setSummary] = useState<any>(null);
   const [movements, setMovements] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);

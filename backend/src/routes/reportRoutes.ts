@@ -9,7 +9,7 @@ const router = Router();
 router.get(
   '/stock-summary',
   authenticate,
-  async (req: AuthRequest, res: Response) => {
+  async (_req: AuthRequest, res: Response) => {
     try {
       const productsSnapshot = await db.collection('products').get();
       const products = productsSnapshot.docs.map(doc => doc.data());

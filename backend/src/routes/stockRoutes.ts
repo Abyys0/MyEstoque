@@ -9,7 +9,7 @@ const router = Router();
 // Get stock movements
 router.get('/movements', authenticate, async (req: AuthRequest, res: Response) => {
   try {
-    const { productId, startDate, endDate, type } = req.query as any;
+    const { productId, type } = req.query as any;
     let query = db.collection('stock_movements').orderBy('timestamp', 'desc');
 
     if (productId) {
@@ -150,7 +150,7 @@ router.post(
 );
 
 // Get low stock products
-router.get('/low-stock', authenticate, async (req: AuthRequest, res: Response) => {
+router.get('/low-stock', authenticate, async (_req: AuthRequest, res: Response) => {
   try {
     const snapshot = await db.collection('products').get();
     const products = snapshot.docs
@@ -170,7 +170,7 @@ router.get('/low-stock', authenticate, async (req: AuthRequest, res: Response) =
 });
 
 // Get products expiring soon
-router.get('/expiring-soon', authenticate, async (req: AuthRequest, res: Response) => {
+router.get('/expiring-soon', authenticate, async (_req: AuthRequest, res: Response) => {
   try {
     const daysWarning = parseInt(process.env.EXPIRY_WARNING_DAYS || '30');
     const warningDate = new Date();

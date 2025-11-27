@@ -10,7 +10,7 @@ router.get(
   '/',
   authenticate,
   authorize(UserRole.ADMIN),
-  async (req: AuthRequest, res: Response) => {
+  async (_req: AuthRequest, res: Response) => {
     try {
       const snapshot = await db.collection('users').get();
       const users = snapshot.docs.map(doc => ({
